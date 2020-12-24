@@ -19,13 +19,10 @@ from datetime import datetime
 
 load_dotenv()  # loads values from env file
 
+DATABASE_URL = os.environ['DATABASE_URL']
 
 def create_db_connection():
-    conn = psycopg2.connect(host='',
-                            port=5432,
-                            user=os.getenv('DB_USER'),
-                            password=os.getenv('DB_PASS'),
-                            database='search_history',
+    conn = psycopg2.connect(DATABASE_URL,
                             sslmode='allow'
                             )
     return conn
