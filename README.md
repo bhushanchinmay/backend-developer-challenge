@@ -1,6 +1,6 @@
 # Discord Bot Link:
 
-bhushanchinmay: (https://discord.com/api/oauth2/authorize?client_id=790529246895669248&permissions=206848&scope=bot)
+bhushanchinmay's bot: [bbot](https://discord.com/api/oauth2/authorize?client_id=790529246895669248&permissions=206848&scope=bot)
 
 # Backend Developer Challenge
 
