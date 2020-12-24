@@ -22,8 +22,12 @@ load_dotenv()  # loads values from env file
 DATABASE_URL = os.environ['DATABASE_URL']
 
 def create_db_connection():
-    conn = psycopg2.connect(DATABASE_URL,
-                            sslmode='require'
+    conn = psycopg2.connect(host='ec2-34-204-121-199.compute-1.amazonaws.com',
+                            port=5432,
+                            user=os.getenv('DB_USER'),
+                            password=os.getenv('DB_PASS'),
+                            database='dfgi7dou33g0p5',
+                            sslmode='allow'
                             )
     return conn
 
@@ -33,7 +37,7 @@ def post_search_data(user_id, keyword):
     sql_cursor = connection.cursor()
 
     # adding timestamp so that I can get same query saved to the database
-    sql_cursor.execute("Insert into public.search_history Values('{}', '{}', '{}')".format(
+    sql_cursor.execute("INSERT INTO public.search_history VALUES('{}', '{}', '{}')".format(
         user_id, keyword, datetime.now().strftime("%Y-%m-%d %H:%M:%S")))
 
     connection.commit()
@@ -46,7 +50,7 @@ def get_search_data(user_id, keyword):
 
     # getting search history for the keyword
     sql_cursor.execute(
-        "Select * from public.search_history where user_id = '{}' and keyword like '%".format(user_id) + keyword + "%'")
+        "SELECT * FROM public.search_history WHERE user_id = '{}' AND keyword LIKE '%".format(user_id) + keyword + "%'")
 
     results = sql_cursor.fetchall()
     connection.close()
