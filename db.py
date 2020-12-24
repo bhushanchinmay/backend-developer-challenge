@@ -23,7 +23,7 @@ DATABASE_URL = os.environ['DATABASE_URL']
 
 def create_db_connection():
     conn = psycopg2.connect(DATABASE_URL,
-                            sslmode='allow'
+                            sslmode='require'
                             )
     return conn
 

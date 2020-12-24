@@ -90,6 +90,7 @@ prometheus-client==0.7.1
 prompt-toolkit==3.0.5
 protobuf==3.12.2
 psycopg2==2.8.6
+psycopg2-binary==2.8.6
 py==1.9.0
 pyarrow==0.17.1
 pyasn1==0.4.8
