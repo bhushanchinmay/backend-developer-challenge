@@ -33,7 +33,7 @@ def post_search_data(user_id, keyword):
     sql_cursor = connection.cursor()
 
     # adding timestamp so that I can get same query saved to the database
-    sql_cursor.execute("Insert into search_history Values('{}', '{}', '{}')".format(
+    sql_cursor.execute("Insert into public.search_history Values('{}', '{}', '{}')".format(
         user_id, keyword, datetime.now().strftime("%Y-%m-%d %H:%M:%S")))
 
     connection.commit()
@@ -46,7 +46,7 @@ def get_search_data(user_id, keyword):
 
     # getting search history for the keyword
     sql_cursor.execute(
-        "Select * from search_history where user_id = '{}' and keyword like '%".format(user_id) + keyword + "%'")
+        "Select * from public.search_history where user_id = '{}' and keyword like '%".format(user_id) + keyword + "%'")
 
     results = sql_cursor.fetchall()
     connection.close()
